@@ -1,0 +1,67 @@
+.herosection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+.herotext{
+    padding: 2rem;
+
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 2rem;
+
+}
+.btn{
+    width: 5rem;
+}
+.aboutus{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.aboutustext{
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 2rem;
+}
+.specials{
+   margin-bottom: 2rem;
+}
+.thespecials{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+    row-gap: 1rem;
+
+}
+.specialcard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 310px;
+}
+.themenu{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+    row-gap: 1rem;
+
+}
+.menucard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 310px;
+}
