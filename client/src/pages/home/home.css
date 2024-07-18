@@ -4,6 +4,9 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 2rem;
+    background: url("./../../assets/hero2.jpeg");
+    background-repeat: no-repeat;
+height: 60vh;
 }
 .herotext{
     padding: 2rem;
@@ -14,10 +17,14 @@
     justify-content: center;
     align-items: center;
     column-gap: 2rem;
+   
 
 }
 .btn{
+    all: unset;
     width: 5rem;
+    background-color: #e08f04;
+    text-align: center;
 }
 .aboutus{
     display: flex;

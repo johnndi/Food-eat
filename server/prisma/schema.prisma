@@ -12,3 +12,39 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model users {
+  id       String  @id @default(uuid())
+  fullName String
+  email    String  @unique
+  password String
+  role     String? @default("user")
+  orders   orders[]
+
+  @@map("users")
+}
+
+model orders {
+  id               String  @id @default(uuid())
+  location         String
+  phoneNumber       Int
+  time               DateTime @default(now())
+  userid           String
+  menuId           String
+  user             users @relation(fields: [userid], references: [id])
+  menu             menu  @relation(fields: [menuId], references: [id])
+
+  @@map("orders")
+}
+
+model menu {
+  id               String  @id @default(uuid())
+  foodImg          String
+  foodTitle        String
+  foodDescription  String
+  special          Boolean? @default(false)
+  price            Int
+  orders           orders[]
+
+  @@map("menu")
+}
