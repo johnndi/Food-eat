@@ -1,3 +1,4 @@
+import food from "./../../assets/image1.jpg"
 export const data =[
     {
         id:"1",
@@ -7,19 +8,19 @@ export const data =[
     },
     {
         id:"2",
-        imgurl:"bbsbsbbssbbs",
+        imgurl:food,
         foodTitle:"pizza",
         description:"Voluptua elitr takimata invidunt lorem clita sadipscing rebum takimata et."
     },
     {
         id:"3",
-        imgurl:"bbsbsbbssbbs",
+        imgurl:food,
         foodTitle:"pizza",
         description:"Voluptua elitr takimata invidunt lorem clita sadipscing rebum takimata et."
     },
     {
         id:"4",
-        imgurl:"bbsbsbbssbbs",
+        imgurl:food,
         foodTitle:"pizza",
         description:"Voluptua elitr takimata invidunt lorem clita sadipscing rebum takimata et."
     }

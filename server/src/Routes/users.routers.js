@@ -1,9 +1,9 @@
 import {Router} from "express"
-import { createUser, loginUser,  } from "../controllers/users.conrollers.js";
+import { createUser, loginUser,getall  } from "../controllers/users.conrollers.js";
 const router = Router();
 
 
-router.post("/register", validateInformation, createUser);
+router.post("/", createUser).get("/",getall);
 
 router.post("/login", loginUser);
 

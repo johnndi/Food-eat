@@ -1,5 +1,11 @@
 import {data} from "../home/data.js"
+import useOrderStore from "../../store/orders.store.js"
 const Orders =()=>{
+    const orders = useOrderStore((state) => state.orders)
+    const removeItem = useOrderStore((state) => state.deleteOrder)
+
+    const handleDeleteItem = (item) => {
+        removeItem(item.id)
     return(
 <div className="orders">
 <div>

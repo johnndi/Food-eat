@@ -4,22 +4,30 @@ import jwt from "jsonwebtoken";
 
 import bcrypt from "bcrypt";
 
+export const getall = async (req, res) => {
+  try {
+    const user = await prisma.users.findMany();
+    res.status(200).json({ user });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
 export const createUser = async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
+    const { fullName,  email, password, role } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
 
-    const createUser = await prisma.users.create({
+     await prisma.users.create({
       data: {
-        firstName: firstName,
-        lastName: lastName,
+        fullName: fullName,
         email: email,
         password: hashedPassword,
+        role:role
       },
     });
     res
       .status(201)
-      .json({ success: true, message: "User registered successfully" });
+      .json({ success: true, message: "User  successfully created" });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
