@@ -8,7 +8,7 @@ const Admin=()=>{
     <div className="dashboard">
         <p>dashboard</p>
         <Link to="/Porders">placed orders</Link>
-        <Link to="">add to menu</Link>
+        <Link to="/Addmenu">add to menu</Link>
         <Link to="">add specials</Link>
       
     </div>

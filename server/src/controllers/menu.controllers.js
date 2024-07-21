@@ -10,55 +10,40 @@ export const getall = async (req, res) => {
   }
 };
 
-
 export const getone = async (req, res) => {
   const id = req.params.id;
   try {
     const menu1 = await prisma.menu.findFirst({
-      where: { id:id },
+      where: { id: id },
     });
-    res.status(200).json({success:true, menu1});
+    res.status(200).json({ success: true, menu1 });
   } catch (err) {
-    res.status(500).json({ success:false, message:err.message });
+    res.status(500).json({ success: false, message: err.message });
   }
 };
 export const posts = async (req, res) => {
   try {
-   
-    const {
-     foodImg,
-     foodTitle,
-     foodDescription,
-     special,
-     price
+    const { foodImg, foodTitle, foodDescription, special, price } = req.body;
 
-    } = req.body;
-
-     await prisma.menu.create({
+    await prisma.menu.create({
       data: {
         foodImg,
-     foodTitle,
-     foodDescription,
-     special,
-     price
+        foodTitle,
+        foodDescription,
+        special,
+        price,
       },
     });
-    res.status(201).json({success:true, message:"created" });
+    res.status(201).json({ success: true, message: "created" });
   } catch (error) {
-    res.status(500).json({success:false, message:error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 
 export const updates = async (req, res) => {
   const id = req.params.id;
   try {
-    const {
-        foodImg,
-        foodTitle,
-        foodDescription,
-        special,
-        price
-    } = req.body;
+    const { foodImg, foodTitle, foodDescription, special, price } = req.body;
 
     const updatemenu = await prisma.menu.update({
       where: { id: id },
@@ -67,7 +52,7 @@ export const updates = async (req, res) => {
         foodTitle,
         foodDescription,
         special,
-        price
+        price,
       },
     });
     res.status(200).json(updatemenu);

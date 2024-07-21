@@ -4,6 +4,7 @@ import Header from './assets/components/header/Header.jsx'
 import Orders from './pages/orders/Orders.jsx'
 import Admin from './pages/admin/Admin.jsx'
 import Porders from './pages/admin/Porders.jsx'
+import Addmenu from './pages/admin/Addmenu.jsx'
 import './App.css'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/Orders' element={<Orders/>}/>
         <Route path='/Admin' element={<Admin/>}/>
         <Route path='/Porders' element={<Porders/>}/>
+        <Route path='/Addmenu' element={<Addmenu/>}/>
       </Routes>
      </BrowserRouter>
         

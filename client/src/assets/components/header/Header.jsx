@@ -1,5 +1,5 @@
 import  { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import useUserStore from "../../../store/user.store.js";
@@ -9,7 +9,7 @@ const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
   const setUser = useUserStore((state) => state.setUser)
-
+const navigate=useNavigate();
   const handleLoginClick = () => {
     setShowLoginForm(true);
     setShowSignUpForm(false);
@@ -47,6 +47,14 @@ const Header = () => {
       });
       const data = await response.json();
       setUser(data); 
+      // console.log(data.data.role)
+
+      if (data.data.role==="admin"){
+      navigate("/Admin")
+      }
+      else{
+        navigate("/")
+      }
     } catch (error) {
       console.error("Error:", error);
     } finally {
@@ -81,7 +89,7 @@ const Header = () => {
         <nav className="HeaderNavList">
           <ul className="NavList-items">
             <li className="navItem">
-              <a href="/">home</a>
+              <Link to="/">home</Link>
             </li>
             <li className="navItem">
               <Link to="/Orders"> your orders</Link>

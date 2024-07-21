@@ -56,8 +56,7 @@ height: 60vh;
     flex-direction:column;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    width: 310px;
+    width: 250px;
     padding:0.5rem 0.3rem;
 }
 .img{
@@ -72,11 +71,14 @@ height: 60vh;
 }
 .menucard{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    width: 310px;
+    width: 250px;
 }
 .specialheader h2{
     text-align:center;
+}
+.menutitle h2{
+    text-align: center;
 }

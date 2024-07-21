@@ -14,15 +14,15 @@ export const getall = async (req, res) => {
 };
 export const createUser = async (req, res) => {
   try {
-    const { fullName,  email, password, role } = req.body;
+    const { fullName, email, password, role } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
 
-     await prisma.users.create({
+    await prisma.users.create({
       data: {
         fullName: fullName,
         email: email,
         password: hashedPassword,
-        role:role
+        role: role,
       },
     });
     res
@@ -41,13 +41,11 @@ export const loginUser = async (req, res) => {
     if (loginUser) {
       const isPasswordValid = bcrypt.compareSync(password, loginUser.password);
       if (isPasswordValid) {
-        
-
         const payload = {
           id: loginUser.id,
           fullName: loginUser.fullName,
           email: loginUser.email,
-          role:loginUser.role,
+          role: loginUser.role,
         };
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
           expiresIn: "7200h",

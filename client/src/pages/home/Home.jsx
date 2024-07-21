@@ -1,30 +1,42 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { data } from "./data.js";
+// import { data } from "./data.js";
 import "./home.css";
 
 const Home = () => {
   const [menu, setMenu] = useState([]);
-//   const [special, setSpecial] = useState();
-  const [loading, setloading] = useState(false);
+  const [special, setSpecial] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setloading(true);
+        setLoading(true);
         const response = await fetch("http://localhost:3000/menu/", {
           method: "GET",
-          headers:{"Content-Type":"application/json"}
+          headers: { "Content-Type": "application/json" },
         });
-    
 
         const data4 = await response.json();
         console.log(data4);
-        setMenu(data4.menu);
+
+        const specialItems = [];
+        const menuItems = [];
+
+        data4.menu.forEach((item) => {
+          if (item.special === true) {
+            specialItems.push(item);
+          } else {
+            menuItems.push(item);
+          }
+        });
+
+        setSpecial(specialItems);
+        setMenu(menuItems);
       } catch (error) {
-        error.message;
+        console.error(error.message);
       } finally {
-        setloading(false);
+        setLoading(false);
       }
     };
     fetchData();
@@ -53,7 +65,6 @@ const Home = () => {
         </div>
         <div className="aboutustext">
           <p>
-            {" "}
             Ipsum no lorem et stet clita et nonumy. Ipsum magna invidunt labore
             amet diam et clita duo, sit accusam sit.
           </p>
@@ -64,34 +75,36 @@ const Home = () => {
           <h2>our weekly specials</h2>
         </div>
         <div className="thespecials">
-          {data.map((special) => (
-            <div className="specialcard" key={special.id}>
-              <img src={special.imgurl} alt="food" className="img"/>
-              <p>{special.foodTitle}</p>
-              <p>{special.description}</p>
+          {special.map((item) => (
+            <div className="specialcard" key={item.id}>
+              <img src={item.imgurl} alt="food" className="img" />
+              <p>{item.foodTitle}</p>
+              <p>{item.foodDescription}</p>
+              <p>{item.price}</p>
               <button className="order">order</button>
             </div>
           ))}
         </div>
+      </div>
 
-        <div className="menu">
-          <div className="menutitle">
-            {loading ? <p>loading...</p> : <h2>our menu</h2>}
-          </div>
-
-           <div className="themenu">
-            {menu.map((menus) => (
-              <div className="menucard" key={menus.id}>
-                <p>{menus.imgurl}</p>
-                <p>{menus.foodTitle}</p>
-                <p>{menus.foodDescription}</p>
-                <button className="order">order</button>
-              </div>
-            ))}
-          </div> 
+      <div className="menu">
+        <div className="menutitle">
+          {loading ? <p>loading...</p> : <h2>our menu</h2>}
+        </div>
+        <div className="themenu">
+          {menu.map((item) => (
+            <div className="menucard" key={item.id}>
+              <img src={item.imgurl} alt="food" className="img" />
+              <p>{item.foodTitle}</p>
+              <p>{item.foodDescription}</p>
+              <p>{item.price}</p>
+              <button className="order">order</button>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 };
 export default Home;
+
