@@ -66,7 +66,7 @@ const Home = () => {
         <div className="thespecials">
           {data.map((special) => (
             <div className="specialcard" key={special.id}>
-              <img src={special.imgurl} alt="food"/>
+              <img src={special.imgurl} alt="food" className="img"/>
               <p>{special.foodTitle}</p>
               <p>{special.description}</p>
               <button className="order">order</button>

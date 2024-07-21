@@ -50,7 +50,7 @@ export const loginUser = async (req, res) => {
           role:loginUser.role,
         };
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
-          expiresIn: "1h",
+          expiresIn: "7200h",
         });
         res.cookie("access_token", token);
         res.status(200).json({ success: true, data: loginUser });

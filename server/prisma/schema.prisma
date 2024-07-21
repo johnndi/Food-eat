@@ -26,13 +26,15 @@ model users {
 
 model orders {
   id               String  @id @default(uuid())
+   foodImg          String
+  foodTitle        String
+  foodDescription  String
   location         String
-  phoneNumber       Int
-  time               DateTime @default(now())
+  phoneNumber       Int 
+   time               DateTime @default(now())
   userid           String
-  menuId           String
   user             users @relation(fields: [userid], references: [id])
-  menu             menu  @relation(fields: [menuId], references: [id])
+
 
   @@map("orders")
 }
@@ -44,7 +46,7 @@ model menu {
   foodDescription  String
   special          Boolean? @default(false)
   price            Int
-  orders           orders[]
+  
 
   @@map("menu")
 }

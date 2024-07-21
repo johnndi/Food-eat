@@ -2,37 +2,47 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const createorder = async (req, res) => {
-  const user = req.users;
-  const {  location, phoneNumber } = req.body;
-  const userid = user.id;
-  const   dateTime=orders.time
   try {
-    const neworder = await prisma.orders.create({
+   const user= req.user;
+    const userid=user.id 
+    const {
+     foodImg,
+     foodTitle,
+     foodDescription,
+     location,
+      phoneNumber,
+
+    } = req.body;
+
+     await prisma.orders.create({
       data: {
-        dateTime: dateTime,
-        location: location,
-        phoneNumber: phoneNumber,
-        userid: userid,
+        foodImg,
+     foodTitle,
+     foodDescription,
+     location,
+     userid,
+phoneNumber
       },
     });
-    res.status(201).json({ success: true, data: neworder });
+    res.status(201).json({success:true, message:"created" });
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    res.status(500).json({success:false, message:error.message });
   }
 };
 
+
 export const getSpecificorder = async (req, res) => {
-  const user = req.users;
+  const user = req.user;
   const userid = user.id;
   try {
     const getorder = await prisma.orders.findMany({
-      where: { userid: users.id },
-      select: {
-        dateTime: true,
-        location: true,
-        number: true,
-        userId: true,
-      },
+      where: { userid: userid },
+      // select: {
+      //   time: true,
+      //   location: true,
+      //   phoneNumber: true,
+      //   userId: true,
+      // },
     });
     res.status(200).json({ success: true, data: getorder });
   } catch (error) {
@@ -47,6 +57,6 @@ export const getAllorders = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: error.message /*"An error occured"*/ });
+      .json({ success: false, message: error.message  });
   }
 };
