@@ -6,6 +6,7 @@ import express from "express";
 import { config } from "dotenv";
 import cors from "cors";
 const app = express();
+config();
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -14,7 +15,7 @@ app.use(
   }),
 );
 app.use(express.json());
-config();
+
 app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: true }));

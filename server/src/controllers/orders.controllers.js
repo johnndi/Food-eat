@@ -30,12 +30,12 @@ export const getSpecificorder = async (req, res) => {
   try {
     const getorder = await prisma.orders.findMany({
       where: { userid: userid },
-      // select: {
-      //   time: true,
-      //   location: true,
-      //   phoneNumber: true,
-      //   userId: true,
-      // },
+      select: {
+        time: true,
+        location: true,
+        phoneNumber: true,
+        userId: true,
+      },
     });
     res.status(200).json({ success: true, data: getorder });
   } catch (error) {
@@ -48,6 +48,8 @@ export const getAllorders = async (req, res) => {
     const allorders = await prisma.orders.findMany();
     res.status(200).json({ success: true, message: allorders });
   } catch (error) {
+    console.log(error.message)
     res.status(500).json({ success: false, message: error.message });
   }
+ 
 };

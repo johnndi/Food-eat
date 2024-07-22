@@ -14,24 +14,25 @@ const Addmenu = () => {
 
   const handleCreate = async (values) => {
     try {
-      const formData = new FormData();
+      const payload = new FormData();
       const cloudName = "dnpgfry7i";
       const uploadPreset="foodapp"
-      formData.append('file', values.foodImg);
-      formData.append('upload_preset', uploadPreset);
+      payload.append('file', values.foodImg);
+      payload.append('upload_preset', uploadPreset);
 
       const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-        {
-          method: "POST",
-          body: formData,
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,{
+      method:"POST",
+       payload
         }
+        
       );
-      if (!response.ok) {
-        alert('Failed to upload image to Cloudinary');
-      }
-
+      // if (!response.ok) {
+      //   alert('Failed to upload image to Cloudinary');
+      // }
+    
       const data = await response.json();
+      console.log(data)
       const imgurl = data.secure_url;
 
       await fetch('http://localhost:3000/menu/', {

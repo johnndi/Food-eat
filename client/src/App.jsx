@@ -17,9 +17,15 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/Orders' element={<Orders/>}/>
-        <Route path='/Admin' element={<Admin/>}/>
+   
+      <Route path='/Admin' element={<Admin/>}/>
         <Route path='/Porders' element={<Porders/>}/>
         <Route path='/Addmenu' element={<Addmenu/>}/>
+       
+           {/* <Route index element={<AdminDashboard />} />
+          <Route path="users" element={<ManageUsers />} />
+           <Route path="orders" element={<ManageOrders />} /> */}
+       
       </Routes>
      </BrowserRouter>
         

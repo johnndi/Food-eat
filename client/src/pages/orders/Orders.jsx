@@ -1,22 +1,26 @@
 import { useEffect, useState } from "react";
-// import axios from "axios";
+
 import useOrderStore from "../../store/orders.store.js";
-import useUserStore from "../../store/user.store.js";
-// import "./Orders.css"; // Assuming you have an Orders.css for styling
+// import useUserStore from "../../store/user.store.js";
+
 
 const Orders = () => {
   const [orderData, setOrderData] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const removeItem = useOrderStore((state) => state.deleteOrder);
-  const userid = useUserStore((state)=>state.userid)
+
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/order/${userid}`,{
-        credentials:"include"
+        setLoading(true)
+        const response = await fetch("http://localhost:3000/order/:id",{
+        credentials:"include",
+        headers: { "Content-Type": "application/json" },
         });
-        setOrderData(response.data);
+        const data= await response.json()
+        console.log(data)
+        setOrderData(data.data);
       } catch (error) {
         setError(error);
         console.error("Error fetching orders:", error);

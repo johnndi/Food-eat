@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import { useEffect, useState } from "react";
 // import { data } from "./data.js";
 import "./home.css";

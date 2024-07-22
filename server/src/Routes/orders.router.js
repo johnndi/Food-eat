@@ -9,7 +9,7 @@ const router = Router();
 
 router
   .post("/", verifyToken, createorder)
-  .get("/", getAllorders)
+  .get("/getall", getAllorders)
   .get("/:id", verifyToken, getSpecificorder);
 
 export default router;

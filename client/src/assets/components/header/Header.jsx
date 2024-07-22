@@ -1,5 +1,6 @@
-import  { useState } from "react";
-import { Link, useNavigate} from "react-router-dom";
+
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import useUserStore from "../../../store/user.store.js";
@@ -8,8 +9,9 @@ import "./header.css";
 const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
-  const setUser = useUserStore((state) => state.setUser)
-const navigate=useNavigate();
+  const { user, setUser, clearUser } = useUserStore();
+  const navigate = useNavigate();
+
   const handleLoginClick = () => {
     setShowLoginForm(true);
     setShowSignUpForm(false);
@@ -18,6 +20,11 @@ const navigate=useNavigate();
   const handleSignUpClick = () => {
     setShowSignUpForm(true);
     setShowLoginForm(false);
+  };
+
+  const handleLogoutClick = () => {
+    clearUser();
+    navigate("/");
   };
 
   const handleCloseClick = () => {
@@ -43,17 +50,16 @@ const navigate=useNavigate();
         headers: {
           "Content-Type": "application/json",
         },
+        credentials:"include",
         body: JSON.stringify(values),
       });
       const data = await response.json();
-      setUser(data); 
-      // console.log(data.data.role)
+      setUser(data);
 
-      if (data.data.role==="admin"){
-      navigate("/Admin")
-      }
-      else{
-        navigate("/")
+      if (data.data.role === "admin") {
+        navigate("/Admin");
+      } else {
+        navigate("/");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -73,7 +79,7 @@ const navigate=useNavigate();
         body: JSON.stringify(values),
       });
       const data = await response.json();
-      console.log(data); 
+      console.log(data);
     } catch (error) {
       console.error("Error:", error);
     } finally {
@@ -92,13 +98,22 @@ const navigate=useNavigate();
               <Link to="/">home</Link>
             </li>
             <li className="navItem">
-              <Link to="/Orders"> your orders</Link>
+              <Link to="/Orders">your orders</Link>
             </li>
           </ul>
         </nav>
         <div className="operation">
-          <button className="login" onClick={handleLoginClick}>log in</button>
-          <button className="login" onClick={handleSignUpClick}>sign up</button>
+          {user ? (
+            <>
+              <span>Welcome, {user.data.fullName}</span> 
+               <button className="login" onClick={handleLogoutClick}>Log out</button>
+            </>
+          ) : (
+            <>
+              <button className="login" onClick={handleLoginClick}>log in</button>
+              <button className="login" onClick={handleSignUpClick}>sign up</button>
+            </>
+          )}
         </div>
       </div>
 

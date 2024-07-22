@@ -1,4 +1,4 @@
-.admin{
+/* .admin{
     display: flex;
 
 
@@ -9,4 +9,20 @@
     flex-direction:column;
 
     
-}
+} */
+.admin-layout {
+    display: flex;
+    height:80vh;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: black;
+    padding: 20px;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
