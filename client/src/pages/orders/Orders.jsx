@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-// import axios from "axios";
 import useOrderStore from "../../store/orders.store.js";
-import useUserStore from "../../store/user.store.js";
-// import "./Orders.css"; // Assuming you have an Orders.css for styling
+import useUserStore from "../../store/user.s
 
 const Orders = () => {
   const [orderData, setOrderData] = useState([]);
