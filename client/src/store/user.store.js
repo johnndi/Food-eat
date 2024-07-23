@@ -6,8 +6,10 @@ const userStore = (set) => ({
 
   setUser: (newUser) =>
     set(() => {
+     
       return { user: newUser };
     }),
+    clearUser: () => set({ user: null }),
 });
 
 const useUserStore = create(

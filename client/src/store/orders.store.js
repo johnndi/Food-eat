@@ -12,7 +12,7 @@ const orderStore = (set) => ({
   deleteItemCart: (id) => {
     set((state) => {
       const updateOrder = state.orders.filter((order) => order.id !== id);
-      return { oreders: updateOrder };
+      return { orders: updateOrder };
     });
   },
 });

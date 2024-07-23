@@ -13,6 +13,6 @@ router
   .get("/", getall)
   .get("/:id", getone)
   .patch("/:id", updates)
-  .delete("/", deletes);
+  .delete("/:id", deletes);
 
 export default router;

@@ -4,6 +4,9 @@
   
 
 }
+.headsec-hidden{
+  display: none;
+}
 .Header{
 display:flex;
 align-items: center;
@@ -70,6 +73,9 @@ padding: 1rem;
   .popup-inner form button {
     margin: 10px 0;
     padding: 10px;
+    background-color:#e08f04;
+    color:white;
+    border-radius:5px;
   }
   .NavList-items{
     list-style: none;

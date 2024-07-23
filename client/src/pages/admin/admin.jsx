@@ -1,25 +1,19 @@
-import { Link, } from "react-router-dom";
-import "./admin.css"
-const Admin=()=>{
-    return(
-<div>
+import { Routes, Route } from 'react-router-dom';
+import AdminLayout from './AdminLayout';
+import Porders from './Porders';
+import Addadmin from './Addadmin';
+import Addmenu from './Addmenu';
 
-    <div className="admin">
-    <div className="dashboard">
-        <p>dashboard</p>
-        <Link to="/Porders">placed orders</Link>
-        <Link to="/Addmenu">add to menu</Link>
-        <Link to="">add specials</Link>
-      
-    </div>
-    <div className="contents">
-        <p>contents</p>
-    </div>
-    </div>
-    
-        
-    
-</div>
-    );
+function Admin() {
+  return (
+    <Routes>
+      <Route path="/" element={<AdminLayout />}>
+      <Route path="Porders" element={<Porders />}/>
+      <Route path="addadmin" element={<Addadmin />}/>
+      <Route path="addmenu" element={<Addmenu />}/>
+      </Route>
+    </Routes>
+  );
 }
-export default Admin
+
+export default Admin;

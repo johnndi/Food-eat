@@ -48,6 +48,28 @@ export const getAllorders = async (req, res) => {
     const allorders = await prisma.orders.findMany();
     res.status(200).json({ success: true, message: allorders });
   } catch (error) {
+    console.log(error.message)
+    res.status(500).json({ success: false, message: error.message });
+  }
+ 
+};
+
+export const deleteone = async (req, res) => {
+  // const user = req.user;
+  // const userid = user.id;
+  const id =req.body;
+  try {
+     await prisma.orders.delete({
+      where: { id: id },
+      // select: {
+      //   time: true,
+      //   location: true,
+      //   phoneNumber: true,
+      //   userId: true,
+      // },
+    });
+    res.status(200).json({ success: true, message: "delete successfully" });
+  } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };

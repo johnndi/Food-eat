@@ -1,0 +1,17 @@
+.addmenu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.description{
+    display: flex;
+    flex-direction: column;
+}
+textarea{
+    background-color: white;
+    height: 7rem;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+}
