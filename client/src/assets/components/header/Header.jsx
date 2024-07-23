@@ -12,6 +12,8 @@ const Header = () => {
   const { user, setUser, clearUser } = useUserStore();
   const navigate = useNavigate();
 
+  const isAdminPage = () => window.location.pathname.startsWith === ("/Admin") 
+
   const handleLoginClick = () => {
     setShowLoginForm(true);
     setShowSignUpForm(false);
@@ -89,7 +91,8 @@ const Header = () => {
   };
 
   return (
-    <section className="headsec">
+    <section  className={ isAdminPage() ? "headsec-hidden" : "headsec"}> 
+      
       <div className="Header">
         <h1 className="headertitle">foodeat</h1>
         <nav className="HeaderNavList">

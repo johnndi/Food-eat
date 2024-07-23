@@ -1,12 +1,13 @@
-
 import { useEffect, useState } from "react";
-// import { data } from "./data.js";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import "./home.css";
 
 const Home = () => {
   const [menu, setMenu] = useState([]);
   const [special, setSpecial] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +42,42 @@ const Home = () => {
     };
     fetchData();
   }, []);
+
+  const handleOrderClick = (item) => {
+    setSelectedItem(item);
+  };
+
+  const handleSubmit = async (values, { resetForm }) => {
+    console.log(values);
+    try {
+      const response = await fetch("http://localhost:3000/order/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          foodImg: selectedItem.foodImg,
+          foodTitle: selectedItem.foodTitle,
+          ...values,
+          
+          foodDescription: selectedItem.foodDescription,
+        }),
+      });
+
+      
+
+      const result = await response.json();
+      console.log(result);
+
+      resetForm();
+      setSelectedItem(null);
+      alert("Order placed successfully!");
+    } catch (error) {
+      console.error(error.message);
+      alert("Failed to place the order. Please try again.");
+    }
+  };
 
   return (
     <div>
@@ -77,11 +114,13 @@ const Home = () => {
         <div className="thespecials">
           {special.map((item) => (
             <div className="specialcard" key={item.id}>
-              <img src={item.imgurl} alt="food" className="img" />
+              <img src={item.foodImg} alt="food" className="img" />
               <p>{item.foodTitle}</p>
               <p>{item.foodDescription}</p>
               <p>{item.price}</p>
-              <button className="order">order</button>
+              <button className="order" onClick={() => handleOrderClick(item)}>
+                order
+              </button>
             </div>
           ))}
         </div>
@@ -94,17 +133,55 @@ const Home = () => {
         <div className="themenu">
           {menu.map((item) => (
             <div className="menucard" key={item.id}>
-              <img src={item.imgurl} alt="food" className="img" />
+              <img src={item.foodImg} alt="food" className="img" />
               <p>{item.foodTitle}</p>
               <p>{item.foodDescription}</p>
               <p>{item.price}</p>
-              <button className="order">order</button>
+              <button className="order" onClick={() => handleOrderClick(item)}>
+                order
+              </button>
             </div>
           ))}
         </div>
       </div>
+
+      {selectedItem && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setSelectedItem(null)}>
+              &times;
+            </span>
+            <h2>Order {selectedItem.foodTitle}</h2>
+            <Formik
+              initialValues={{ location: "", phoneNumber: "" }}
+              validationSchema={Yup.object({
+                location: Yup.string().required("Location is required"),
+                phoneNumber: Yup.string().required("Phone number is required"),
+              })}
+              onSubmit={handleSubmit}
+            >
+              <Form>
+                <div>
+                  <label htmlFor="location">Location</label>
+                  <Field name="location" type="text" />
+                  <ErrorMessage name="location" component="div" />
+                </div>
+                <div>
+                  <label htmlFor="phoneNumber">Phone Number</label>
+                  <Field name="phoneNumber" type="number" />
+                  <ErrorMessage name="phoneNumber" component="div" />
+                </div>
+                <button type="submit">Submit</button>
+              </Form>
+            </Formik>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
+
 export default Home;
+
+
 

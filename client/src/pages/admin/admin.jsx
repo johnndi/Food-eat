@@ -1,37 +1,19 @@
-import { Link, Outlet } from "react-router-dom";
-import useUserStore from "../../store/user.store";
-import "./admin.css";
+import { Routes, Route } from 'react-router-dom';
+import AdminLayout from './AdminLayout';
+import Porders from './Porders';
+import Addadmin from './Addadmin';
+import Addmenu from './Addmenu';
 
-const AdminLayout = () => {
-  const { user } = useUserStore();
-
+function Admin() {
   return (
-    <div className="admin-layout">
-      <aside className="sidebar">
-        <h2>Admin Dashboard</h2>
-        <p>Welcome, {user?.data?.fullName}</p>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/admin">Dashboard</Link>
-            </li>
-            <li>
-              <Link to="/admin/users"> Users</Link>
-            </li>
-            <li>
-              <Link to="/Porders"> Orders</Link>
-            </li>
-            <li>
-              <Link to="/Addmenu">add menu</Link>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-      <main className="content">
-        <Outlet />
-      </main>
-    </div>
+    <Routes>
+      <Route path="/" element={<AdminLayout />}>
+      <Route path="Porders" element={<Porders />}/>
+      <Route path="addadmin" element={<Addadmin />}/>
+      <Route path="addmenu" element={<Addmenu />}/>
+      </Route>
+    </Routes>
   );
-};
+}
 
-export default AdminLayout;
+export default Admin;

@@ -4,6 +4,9 @@
   
 
 }
+.headsec-hidden{
+  display: none;
+}
 .Header{
 display:flex;
 align-items: center;

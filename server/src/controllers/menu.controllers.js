@@ -64,10 +64,10 @@ export const updates = async (req, res) => {
 export const deletes = async (req, res) => {
   const id = req.params.id;
   try {
-    const delJob = await prisma.menu.delete({
+      await prisma.menu.delete({
       where: { id: id },
     });
-    res.status(200).json({ delJob, message: "delete successful" });
+    res.status(200).json({  message: "delete successful" });
   } catch (err) {
     res.status(500).json({ message: "could'nt delete server error" });
   }

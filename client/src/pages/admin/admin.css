@@ -15,12 +15,21 @@
     height:80vh;
   }
   
-  .sidebar {
+  .sidebar { 
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     width: 250px;
     background-color: black;
     padding: 20px;
+    list-style: none;
+
   }
-  
+  .sidebar nav a{
+   
+    text-decoration: none;
+    color: white;
+  }
   .content {
     flex: 1;
     padding: 20px;
