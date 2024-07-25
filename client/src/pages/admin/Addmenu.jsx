@@ -2,7 +2,8 @@ import  { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './addmenu.css';
-
+import Dashboard from './Dashboard';
+// eslint-disable-next-line react/prop-types
 function ImageUpload({ setFoodImg }) {
   const [preview, setPreview] = useState('');
   const [uploading, setUploading] = useState(false);
@@ -91,6 +92,8 @@ const Addmenu = () => {
   });
 
   return (
+   <div className='addorder'>
+    <div className='dash'><Dashboard/></div>
     <div className="addmenu">
       <form onSubmit={formik.handleSubmit}>
         <div>
@@ -153,6 +156,7 @@ const Addmenu = () => {
         {loading ? <p>Loading...</p> : <button type="submit">Submit</button>}
       </form>
     </div>
+   </div>
   );
 };
 

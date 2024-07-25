@@ -1,7 +1,28 @@
+.porderr{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+
+}
+.dash{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 250px;
+    background-color: black;
+    padding: 20px;
+    list-style: none;
+    height: 100%;
+}
+
 .placed{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
+    width: 60%;
 }

@@ -2,18 +2,23 @@ import { useEffect, useState } from "react";
 
 
 import useOrderStore from "../../store/orders.store.js";
+import "./orders.css"
 
 
+
+const Orders = () => {
+=======
 =======
 
 
 
 
 const Orders = () => {
+
   const [orderData, setOrderData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const removeItem = useOrderStore((state) => state.deleteOrder);
+
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -24,8 +29,11 @@ const Orders = () => {
         headers: { "Content-Type": "application/json" },
         });
         const data= await response.json()
-        console.log(data)
+        console.log(data.data)
         setOrderData(data.data);
+     
+
+       
       } catch (error) {
         setError(error);
         console.error("Error fetching orders:", error);
@@ -37,9 +45,20 @@ const Orders = () => {
     fetchOrders();
   }, []);
 
-  const handleDeleteItem = (item) => {
-    removeItem(item.id);
-    setOrderData((prevData) => prevData.filter((order) => order.id !== item.id));
+  const handleDeleteItem = async (id)=> {
+    try{
+    const response= await fetch(`http://localhost:3000/order/${id}`,{
+      method:"DELETE",
+      headers:{ "Content-Type": "application/json"},
+      credentials:"include",
+    }) 
+    console.log(response)
+    
+    }catch(e){
+console.log(e.message)
+    }
+    // removeItem(item.id);
+    // setOrderData((prevData) => prevData.filter((order) => order.id !== item.id));
   };
 
   return (
@@ -56,9 +75,10 @@ const Orders = () => {
       <div className="order">
         {orderData.map((order) => (
           <div className="ordercard" key={order.id}>
-            <img src={order.imgurl} alt={order.foodTitle} />
+           <h4> orders can only be cancelled within 5 min of order placement</h4>
+            <img src={order.foodImg} alt={order.foodTitle} className="img" />
             <p>{order.foodTitle}</p>
-            <p>{order.description}</p>
+            <p>your bill:kes:{order.price}</p>
             <p>Your order will be delivered within 30 minutes</p>
             <button className="cancel" onClick={() => handleDeleteItem(order)}>Cancel</button>
           </div>

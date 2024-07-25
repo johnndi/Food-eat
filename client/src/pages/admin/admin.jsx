@@ -3,7 +3,7 @@ import AdminLayout from './AdminLayout';
 import Porders from './Porders';
 import Addadmin from './Addadmin';
 import Addmenu from './Addmenu';
-
+import Viewmenu from './Viewmenu';
 function Admin() {
   return (
     <Routes>
@@ -11,6 +11,7 @@ function Admin() {
       <Route path="Porders" element={<Porders />}/>
       <Route path="addadmin" element={<Addadmin />}/>
       <Route path="addmenu" element={<Addmenu />}/>
+      <Route path="viewmenu" element={<Viewmenu />}/>
       </Route>
     </Routes>
   );

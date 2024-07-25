@@ -1,3 +1,26 @@
 .dashboard{
-    width:20%;
+    list-style: none;
+    height: 100vh;
+  
+}
+.navs{
+    display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+   gap: 5rem;
+    list-style: none;
+    padding: 1.5rem;
+}
+.navs a{
+    text-decoration: none;
+    color: white;
+    list-style: none;
+}
+.list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    gap: 5rem;
 }

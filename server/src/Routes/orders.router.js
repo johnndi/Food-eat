@@ -12,5 +12,5 @@ router
   .post("/", verifyToken, createorder)
   .get("/getall", getAllorders)
   .get("/:id", verifyToken, getSpecificorder)
-.post(":id",verifyToken,deleteone);
+.delete("/:id",verifyToken,deleteone);
 export default router;
