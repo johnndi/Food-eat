@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
 
+
 import useOrderStore from "../../store/orders.store.js";
 import "./orders.css"
 
 
-const Orders = (id) => {
+
+const Orders = () => {
+=======
+=======
+
+
+
+
+const Orders = () => {
+
   const [orderData, setOrderData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
