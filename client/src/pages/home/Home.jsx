@@ -19,7 +19,7 @@ const Home = () => {
         });
 
         const data4 = await response.json();
-        console.log(data4);
+        console.log(data4.menu);
 
         const specialItems = [];
         const menuItems = [];
@@ -31,7 +31,7 @@ const Home = () => {
             menuItems.push(item);
           }
         });
-
+        
         setSpecial(specialItems);
         setMenu(menuItems);
       } catch (error) {
@@ -48,7 +48,9 @@ const Home = () => {
   };
 
   const handleSubmit = async (values, { resetForm }) => {
-    console.log(values);
+    const totalPrice = values.numberOfOrders * selectedItem.price;
+    console.log({ ...values, totalPrice });
+
     try {
       const response = await fetch("http://localhost:3000/order/", {
         method: "POST",
@@ -59,13 +61,13 @@ const Home = () => {
         body: JSON.stringify({
           foodImg: selectedItem.foodImg,
           foodTitle: selectedItem.foodTitle,
-          ...values,
-          
+          location: values.location,
+          phoneNumber: values.phoneNumber,
+          numberOfOrders: values.numberOfOrders,
+          price: totalPrice,
           foodDescription: selectedItem.foodDescription,
         }),
       });
-
-      
 
       const result = await response.json();
       console.log(result);
@@ -83,22 +85,22 @@ const Home = () => {
     <div>
       <div className="herosection">
         <div className="herotext">
-          <h2>order from us</h2>
-          <p>we offer a variety of delicacies</p>
+          <h2>Order from Us</h2>
+          <p>We offer a variety of delicacies</p>
         </div>
         <div className="buttons">
           <div className="btn">
-            <p>orders</p>
+            <p>Orders</p>
           </div>
           <div className="btn">
-            <p>menu</p>
+            <p>Menu</p>
           </div>
         </div>
       </div>
       <div className="aboutus">
         <div className="aboutheader">
-          <h2>about us</h2>
-          <h3>welcome</h3>
+          <h2>About Us</h2>
+          <h3>Welcome</h3>
         </div>
         <div className="aboutustext">
           <p>
@@ -109,7 +111,7 @@ const Home = () => {
       </div>
       <div className="specials">
         <div className="specialheader">
-          <h2>our weekly specials</h2>
+          <h2>Our Weekly Specials</h2>
         </div>
         <div className="thespecials">
           {special.map((item) => (
@@ -117,9 +119,9 @@ const Home = () => {
               <img src={item.foodImg} alt="food" className="img" />
               <p>{item.foodTitle}</p>
               <p>{item.foodDescription}</p>
-              <p>{item.price}</p>
+              <p>kes:{item.price}</p>
               <button className="order" onClick={() => handleOrderClick(item)}>
-                order
+                Order
               </button>
             </div>
           ))}
@@ -128,7 +130,7 @@ const Home = () => {
 
       <div className="menu">
         <div className="menutitle">
-          {loading ? <p>loading...</p> : <h2>our menu</h2>}
+          {loading ? <p>Loading...</p> : <h2>Our Menu</h2>}
         </div>
         <div className="themenu">
           {menu.map((item) => (
@@ -136,9 +138,9 @@ const Home = () => {
               <img src={item.foodImg} alt="food" className="img" />
               <p>{item.foodTitle}</p>
               <p>{item.foodDescription}</p>
-              <p>{item.price}</p>
+              <p>kes:{item.price}</p>
               <button className="order" onClick={() => handleOrderClick(item)}>
-                order
+                Order
               </button>
             </div>
           ))}
@@ -153,26 +155,46 @@ const Home = () => {
             </span>
             <h2>Order {selectedItem.foodTitle}</h2>
             <Formik
-              initialValues={{ location: "", phoneNumber: "" }}
+              initialValues={{
+                location: "",
+                phoneNumber: "",
+                numberOfOrders: 1,
+              
+              }}
               validationSchema={Yup.object({
                 location: Yup.string().required("Location is required"),
                 phoneNumber: Yup.string().required("Phone number is required"),
+                numberOfOrders: Yup.number()
+                  .min(1, "At least one order is required")
+                  .required("Number of orders is required"),
               })}
               onSubmit={handleSubmit}
             >
-              <Form>
-                <div>
-                  <label htmlFor="location">Location</label>
-                  <Field name="location" type="text" />
-                  <ErrorMessage name="location" component="div" />
-                </div>
-                <div>
-                  <label htmlFor="phoneNumber">Phone Number</label>
-                  <Field name="phoneNumber" type="number" />
-                  <ErrorMessage name="phoneNumber" component="div" />
-                </div>
-                <button type="submit">Submit</button>
-              </Form>
+              {({ values }) => (
+                <Form>
+                  <div>
+                    <label htmlFor="location">Location</label>
+                    <Field name="location" type="text" />
+                    <ErrorMessage name="location" component="div" />
+                  </div>
+                  <div>
+                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <Field name="phoneNumber" type="number" />
+                    <ErrorMessage name="phoneNumber" component="div" />
+                  </div>
+                  <div>
+                    <label htmlFor="numberOfOrders">Number of Orders</label>
+                    <Field name="numberOfOrders" type="number" />
+                    <ErrorMessage name="numberOfOrders" component="div" />
+                  </div>
+                  <div>
+                    <strong>
+                      totalPrice: {values.numberOfOrders * selectedItem.price}
+                    </strong>
+                  </div>
+                  <button type="submit">Submit</button>
+                </Form>
+              )}
             </Formik>
           </div>
         </div>
@@ -182,6 +204,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-

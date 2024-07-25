@@ -1,7 +1,7 @@
 import "./addadmin.css"
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
+import Dashboard from "./Dashboard"
 const validationSchema = Yup.object({
   fullName: Yup.string().required('Full name is required'),
   email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -44,7 +44,11 @@ const Addadmin = () => {
   });
 
   return (
-    <div className='addadmin'>
+    <div className="order">
+
+<div className="dash"><Dashboard/></div>
+
+      <div className='addadmin'>
         <form onSubmit={formik.handleSubmit}>
       <div>
         <label htmlFor="fullName">Full Name</label>
@@ -109,6 +113,8 @@ const Addadmin = () => {
       <button type="submit">Submit</button>
     </form>
     </div>
+    </div>
+    
   );
 };
 

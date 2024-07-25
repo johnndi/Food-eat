@@ -5,7 +5,8 @@ export const createorder = async (req, res) => {
   try {
     const user = req.user;
     const userid = user.id;
-    const { foodImg, foodTitle, foodDescription, location, phoneNumber } =
+   const fullName = user.fullName;
+    const { foodImg, foodTitle, foodDescription, location, phoneNumber ,price , numberOfOrders } =
       req.body;
 
     await prisma.orders.create({
@@ -16,6 +17,9 @@ export const createorder = async (req, res) => {
         location,
         userid,
         phoneNumber,
+        fullName,
+        price,
+        numberOfOrders
       },
     });
     res.status(201).json({ success: true, message: "created" });
@@ -55,20 +59,12 @@ export const getAllorders = async (req, res) => {
 };
 
 export const deleteone = async (req, res) => {
-  // const user = req.user;
-  // const userid = user.id;
-  const id =req.body;
+const {id}= req.body;
   try {
-     await prisma.orders.delete({
-      where: { id: id },
-      // select: {
-      //   time: true,
-      //   location: true,
-      //   phoneNumber: true,
-      //   userId: true,
-      // },
-    });
-    res.status(200).json({ success: true, message: "delete successfully" });
+     const deleteOrder = await prisma.orders.delete({
+      where :{id: id},
+     });
+    res.status(200).json({ success: true, message: "delete successfully", deleteOrder });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

@@ -12,7 +12,9 @@ const Header = () => {
   const { user, setUser, clearUser } = useUserStore();
   const navigate = useNavigate();
 
-  const isAdminPage = () => window.location.pathname.startsWith === ("/Admin") 
+  const isAdminPage = () => {window.location.pathname ===("/Admin") 
+
+  }
 
   const handleLoginClick = () => {
     setShowLoginForm(true);
@@ -91,7 +93,7 @@ const Header = () => {
   };
 
   return (
-    <section  className={ isAdminPage() ? "headsec-hidden" : "headsec"}> 
+    <section  className={ isAdminPage() ? "headsechidden" : "headsec"}> 
       
       <div className="Header">
         <h1 className="headertitle">foodeat</h1>
@@ -121,8 +123,8 @@ const Header = () => {
       </div>
 
       {showLoginForm && (
-        <div className="popup">
-          <div className="popup-inner">
+        <div className="popuph">
+          <div className="popup-innerh">
             <h2>Log In</h2>
             <Formik
               initialValues={{ email: "", password: "" }}
@@ -131,11 +133,11 @@ const Header = () => {
             >
               {({ isSubmitting }) => (
                 <Form>
-                  <label>Email:</label>
+                  <label htmlFor="Email" className="labelemail">Email:</label>
                   <Field type="email" name="email" />
                   <ErrorMessage name="email" component="div" />
                   
-                  <label>Password:</label>
+                  <label htmlFor="password">Password:</label>
                   <Field type="password" name="password" />
                   <ErrorMessage name="password" component="div" />
                   
@@ -149,8 +151,8 @@ const Header = () => {
       )}
 
       {showSignUpForm && (
-        <div className="popup">
-          <div className="popup-inner">
+        <div className="popuph">
+          <div className="popup-innerh">
             <h2>Sign Up</h2>
             <Formik
               initialValues={{ fullName: "", email: "", password: "" }}
@@ -159,15 +161,15 @@ const Header = () => {
             >
               {({ isSubmitting }) => (
                 <Form>
-                  <label>Full Name:</label>
+                  <label htmlFor="fullname" className="labelemail">Full Name:</label>
                   <Field type="text" name="fullName" />
                   <ErrorMessage name="fullName" component="div" />
                   
-                  <label>Email:</label>
+                  <label  className="labelemail" htmlFor="email">Email:</label>
                   <Field type="email" name="email" />
                   <ErrorMessage name="email" component="div" />
                   
-                  <label>Password:</label>
+                  <label  className="labelemail" htmlFor="password">Password:</label>
                   <Field type="password" name="password" />
                   <ErrorMessage name="password" component="div" />
                   

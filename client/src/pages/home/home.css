@@ -4,9 +4,11 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 2rem;
-    background: url("./../../assets/hero2.jpeg");
+    background: url(./../../assets/pic.jpeg);
     background-repeat: no-repeat;
-height: 60vh;
+    object-fit: cover;
+    height: 70vh;
+
 }
 .herotext{
     padding: 2rem;
@@ -60,9 +62,11 @@ height: 60vh;
     padding:0.5rem 0.3rem;
     border:3px solid #e08f04;
     border-radius: 10px;
+    overflow:hidden
 }
 .img{
     height:50%;
+    width: 50%;
 }
 .themenu{
     display: flex;
@@ -80,6 +84,7 @@ height: 60vh;
     padding:0.5rem 0.3rem;
     border:3px solid #e08f04;
     border-radius: 10px;
+    overflow: hidden;
 }
 .specialheader h2{
     text-align:center;
@@ -110,39 +115,40 @@ height: 60vh;
     height: 3rem;
     text-align: center;
     border-radius: 10px;
+   
 }
   
 
-/* modal.css */
 
-/* The Modal (background) */
+
+
 .modal {
-    display: block; /* Show the modal by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: block; 
+    position: fixed;
+    z-index: 1; 
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-    padding-top: 60px; /* Padding at the top */
+    width: 100%; 
+    height: 50%;
+    overflow: auto; 
+    background-color: rgb(0, 0, 0); 
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 1rem; 
   }
   
-  /* Modal Content/Box */
+ 
   .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto; /* 15% from the top and centered */
+    background-color: black;
+    margin: 1rem auto; 
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    max-width: 600px; /* Max width */
+    border: 3px solid  #e08f04;
+    width: 80%;
+    max-width: 600px; 
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   
-  /* The Close Button */
+ 
   .close {
     color: #aaa;
     float: right;
@@ -157,10 +163,11 @@ height: 60vh;
     cursor: pointer;
   }
   
-  /* Form styles */
+
   form {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
   
   form div {
@@ -170,6 +177,7 @@ height: 60vh;
   label {
     margin-bottom: 5px;
     font-weight: bold;
+    color: white;
   }
   
   input[type="text"] {
@@ -183,8 +191,8 @@ height: 60vh;
   }
   
   button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
+    width: 100%;
+    background-color: #e08f04;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -202,7 +210,7 @@ height: 60vh;
   }
   
   .modal h2 {
-    margin-bottom: 20px;
+    margin-bottom:1rem;
     font-size: 1.5em;
   }
   

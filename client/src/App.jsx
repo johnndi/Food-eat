@@ -2,7 +2,7 @@ import Home from './pages/home/Home'
 import {BrowserRouter,Routes,Route} from "react-router-dom"
 import Header from './assets/components/header/Header.jsx'
 import Orders from './pages/orders/Orders.jsx'
-
+import Viewmenu from './pages/admin/Viewmenu.jsx'
 import Admin from './pages/admin/Admin.jsx'
 import Porders from './pages/admin/Porders.jsx'
 import Addmenu from './pages/admin/Addmenu.jsx'
@@ -16,6 +16,7 @@ function App() {
     <>
      <BrowserRouter>
      <Header/>
+     
    
       <Routes>
      
@@ -26,6 +27,7 @@ function App() {
         <Route path= "/Admin/Porders" element={<Porders/>}/>
         <Route path="/Admin/Addmenu" element={<Addmenu/>}/>
         <Route path="/Admin/Addadmin" element={<Addadmin/>}/>
+        <Route path="/Admin/viewmenu" element={<Viewmenu/>}/>
         
        
         
