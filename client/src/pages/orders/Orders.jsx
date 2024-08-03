@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 
 
-import useOrderStore from "../../store/orders.store.js";
+
 import "./orders.css"
 
 
 
-const Orders = () => {
-=======
-=======
+
+
 
 
 
@@ -89,13 +88,5 @@ console.log(e.message)
 };
 
 export default Orders
-
-
-
-
-
-
-
-
 
 

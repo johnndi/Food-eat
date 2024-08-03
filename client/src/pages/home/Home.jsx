@@ -19,7 +19,7 @@ const Home = () => {
         });
 
         const data4 = await response.json();
-        console.log(data4.menu);
+        console.log(data4);
 
         const specialItems = [];
         const menuItems = [];

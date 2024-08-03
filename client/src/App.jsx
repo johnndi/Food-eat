@@ -7,6 +7,7 @@ import Admin from './pages/admin/Admin.jsx'
 import Porders from './pages/admin/Porders.jsx'
 import Addmenu from './pages/admin/Addmenu.jsx'
 import Addadmin from './pages/admin/Addadmin.jsx'
+import Protected from './Protected.jsx'
 import './App.css'
 
 function App() {
@@ -22,12 +23,16 @@ function App() {
      
         <Route path='/' element={<Home/>}/>
         <Route path='/Orders' element={<Orders/>}/>
-   
+
+        
+        <Route  element={<Protected/>}>
         <Route path='/Admin' element={<Admin/>}/>
         <Route path= "/Admin/Porders" element={<Porders/>}/>
         <Route path="/Admin/Addmenu" element={<Addmenu/>}/>
         <Route path="/Admin/Addadmin" element={<Addadmin/>}/>
         <Route path="/Admin/viewmenu" element={<Viewmenu/>}/>
+        </Route>
+       
         
        
         
