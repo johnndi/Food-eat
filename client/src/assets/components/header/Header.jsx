@@ -9,14 +9,15 @@ import "./header.css";
 const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
-  const { user, setUser, clearUser } = useUserStore();
+  const { user, setUser, clearUser ,setRole} = useUserStore();
   const navigate = useNavigate();
 
-  const isAdminPage = () => {window.location.pathname ===("/Admin") 
+  const isAdminPage = () => {
+    return window.location.pathname.startsWith("/Admin"); 
 
-  }
+  };
 
-  const handleLoginClick = () => {
+   const handleLoginClick = () => {
     setShowLoginForm(true);
     setShowSignUpForm(false);
   };
@@ -58,16 +59,22 @@ const Header = () => {
         body: JSON.stringify(values),
       });
       const data = await response.json();
+      console.log(data);
       setUser(data);
+     
 
       if (data.data.role === "admin") {
+        setRole(data.data.role)
+       
         navigate("/Admin");
       } else {
         navigate("/");
       }
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("Error:", error);
-    } finally {
+    }
+     finally {
       setSubmitting(false);
       handleCloseClick();
     }

@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./home.css";
+import useUserStore from "../../store/user.store";
 
 const Home = () => {
   const [menu, setMenu] = useState([]);
   const [special, setSpecial] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [showLoginAlert, setShowLoginAlert] = useState(false);
+  const { user } = useUserStore();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +34,7 @@ const Home = () => {
             menuItems.push(item);
           }
         });
-        
+
         setSpecial(specialItems);
         setMenu(menuItems);
       } catch (error) {
@@ -44,7 +47,11 @@ const Home = () => {
   }, []);
 
   const handleOrderClick = (item) => {
-    setSelectedItem(item);
+    if (!user) {
+      setShowLoginAlert(true);
+    } else {
+      setSelectedItem(item);
+    }
   };
 
   const handleSubmit = async (values, { resetForm }) => {
@@ -147,6 +154,15 @@ const Home = () => {
         </div>
       </div>
 
+      {showLoginAlert && (
+        <div className="alert">
+          <div className="alert-content">
+            <p>You must be logged in to order.</p>
+            <button onClick={() => setShowLoginAlert(false)}>Close</button>
+          </div>
+        </div>
+      )}
+
       {selectedItem && (
         <div className="modal">
           <div className="modal-content">
@@ -159,7 +175,6 @@ const Home = () => {
                 location: "",
                 phoneNumber: "",
                 numberOfOrders: 1,
-              
               }}
               validationSchema={Yup.object({
                 location: Yup.string().required("Location is required"),

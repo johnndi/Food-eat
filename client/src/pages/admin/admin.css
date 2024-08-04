@@ -23,6 +23,7 @@
     background-color: black;
     padding: 20px;
     list-style: none;
+    height: 100vh;
 
   }
   .sidebar nav a{

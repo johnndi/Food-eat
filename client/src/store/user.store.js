@@ -3,13 +3,17 @@ import { devtools, persist } from "zustand/middleware";
 
 const userStore = (set) => ({
   user: {},
-
+  role:{},
   setUser: (newUser) =>
     set(() => {
      
       return { user: newUser };
     }),
-    clearUser: () => set({ user: null }),
+    setRole:(newRole)=>
+      set(()=>{
+        return{role:newRole};
+      }),
+    clearUser: () => set({ user: null, role:null }),
 });
 
 const useUserStore = create(

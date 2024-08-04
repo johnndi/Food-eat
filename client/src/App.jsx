@@ -24,9 +24,9 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/Orders' element={<Orders/>}/>
 
-        
+
         <Route  element={<Protected/>}>
-        <Route path='/Admin' element={<Admin/>}/>
+        <Route path='/Admin/*' element={<Admin/>}/>
         <Route path= "/Admin/Porders" element={<Porders/>}/>
         <Route path="/Admin/Addmenu" element={<Addmenu/>}/>
         <Route path="/Admin/Addadmin" element={<Addadmin/>}/>
