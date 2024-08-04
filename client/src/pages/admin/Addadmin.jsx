@@ -2,6 +2,9 @@ import "./addadmin.css"
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Dashboard from "./Dashboard"
+import {ToastContainer, toast} from "react-toastify"
+
+
 const validationSchema = Yup.object({
   fullName: Yup.string().required('Full name is required'),
   email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -22,10 +25,10 @@ const Addadmin = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to add admin');
+        toast('Failed to add admin');
       }
 
-      alert('Admin added successfully');
+      toast('Admin added successfully');
     } catch (error) {
       console.error('Error adding admin:', error);
       alert(error.message);
@@ -111,6 +114,7 @@ const Addadmin = () => {
         )}
       </div>
       <button type="submit">Submit</button>
+      <ToastContainer/>
     </form>
     </div>
     </div>

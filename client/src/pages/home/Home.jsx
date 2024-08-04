@@ -3,13 +3,15 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./home.css";
 import useUserStore from "../../store/user.store";
+import {ToastContainer, toast} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
   const [menu, setMenu] = useState([]);
   const [special, setSpecial] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [showLoginAlert, setShowLoginAlert] = useState(false);
+  // const [showLoginAlert, setShowLoginAlert] = useState(false);
   const { user } = useUserStore();
 
   useEffect(() => {
@@ -48,7 +50,7 @@ const Home = () => {
 
   const handleOrderClick = (item) => {
     if (!user) {
-      setShowLoginAlert(true);
+      toast("please log in");
     } else {
       setSelectedItem(item);
     }
@@ -97,10 +99,10 @@ const Home = () => {
         </div>
         <div className="buttons">
           <div className="btn">
-            <p>Orders</p>
+            <a href="/Orders">orders</a>
           </div>
           <div className="btn">
-            <p>Menu</p>
+            <a href="#menu">menu</a>
           </div>
         </div>
       </div>
@@ -130,12 +132,13 @@ const Home = () => {
               <button className="order" onClick={() => handleOrderClick(item)}>
                 Order
               </button>
+              <ToastContainer/>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="menu">
+      <div className="menu" id="menu">
         <div className="menutitle">
           {loading ? <p>Loading...</p> : <h2>Our Menu</h2>}
         </div>
@@ -149,19 +152,20 @@ const Home = () => {
               <button className="order" onClick={() => handleOrderClick(item)}>
                 Order
               </button>
+              <ToastContainer/>
             </div>
           ))}
         </div>
       </div>
 
-      {showLoginAlert && (
+      {/* {showLoginAlert && (
         <div className="alert">
           <div className="alert-content">
             <p>You must be logged in to order.</p>
             <button onClick={() => setShowLoginAlert(false)}>Close</button>
           </div>
         </div>
-      )}
+      )} */}
 
       {selectedItem && (
         <div className="modal">

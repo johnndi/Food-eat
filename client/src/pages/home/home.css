@@ -22,11 +22,18 @@
    
 
 }
+
 .btn{
     all: unset;
     width: 5rem;
     background-color: #e08f04;
     text-align: center;
+ 
+    border-radius:5px;
+}
+.btn a{
+  color:white;
+  text-decoration: none;
 }
 .aboutus{
     display: flex;

@@ -3,6 +3,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './addmenu.css';
 import Dashboard from './Dashboard';
+import {ToastContainer, toast} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 // eslint-disable-next-line react/prop-types
 function ImageUpload({ setFoodImg }) {
   const [preview, setPreview] = useState('');
@@ -16,10 +18,10 @@ function ImageUpload({ setFoodImg }) {
 
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'blog-image');
+    formData.append('upload_preset', 'johnndi');
 
     try {
-      const res = await fetch('https://api.cloudinary.com/v1_1/dxwlzto9h/image/upload', {
+      const res = await fetch('https://api.cloudinary.com/v1_1/dniffzchc/image/upload', {
         method: 'POST',
         body: formData,
       });
@@ -81,10 +83,10 @@ const Addmenu = () => {
           },
           body: JSON.stringify({ ...values, foodImg }),
         });
-        alert('Food item added successfully');
+        toast('Food item added successfully');
       } catch (error) {
         console.error('Error adding food item:', error);
-        alert(error.message);
+        toast(error.message);
       } finally {
         setLoading(false);
       }
@@ -154,6 +156,7 @@ const Addmenu = () => {
           </label>
         </div>
         {loading ? <p>Loading...</p> : <button type="submit">Submit</button>}
+          <ToastContainer/>
       </form>
     </div>
    </div>
