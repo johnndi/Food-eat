@@ -8,6 +8,7 @@ import Porders from './pages/admin/Porders.jsx'
 import Addmenu from './pages/admin/Addmenu.jsx'
 import Addadmin from './pages/admin/Addadmin.jsx'
 import Protected from './Protected.jsx'
+import Footer from './assets/components/Footer.jsx'
 import './App.css'
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           
        
       </Routes>
+      <Footer/>
      </BrowserRouter>
         
     </>

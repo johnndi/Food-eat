@@ -22,18 +22,23 @@ export const getone = async (req, res) => {
   }
 };
 export const posts = async (req, res) => {
+  user=req.user;
+  
   try {
     const { foodImg, foodTitle, foodDescription, special, price } = req.body;
+    if(user.role==="admin"){
 
-    await prisma.menu.create({
-      data: {
-        foodImg,
-        foodTitle,
-        foodDescription,
-        special,
-        price,
-      },
-    });
+      await prisma.menu.create({
+        data: {
+          foodImg,
+          foodTitle,
+          foodDescription,
+          special,
+          price,
+        },
+  });
+    }
+
     res.status(201).json({ success: true, message: "created" });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });

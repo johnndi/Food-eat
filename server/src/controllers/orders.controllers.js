@@ -8,20 +8,22 @@ export const createorder = async (req, res) => {
    const fullName = user.fullName;
     const { foodImg, foodTitle, foodDescription, location, phoneNumber ,price , numberOfOrders } =
       req.body;
+if(user.role==="user"){
+  await prisma.orders.create({
+    data: {
+      foodImg,
+      foodTitle,
+      foodDescription,
+      location,
+      userid,
+      phoneNumber,
+      fullName,
+      price,
+      numberOfOrders
+    },
+  });
+}
 
-    await prisma.orders.create({
-      data: {
-        foodImg,
-        foodTitle,
-        foodDescription,
-        location,
-        userid,
-        phoneNumber,
-        fullName,
-        price,
-        numberOfOrders
-      },
-    });
     res.status(201).json({ success: true, message: "created" });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
