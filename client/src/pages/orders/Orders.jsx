@@ -1,38 +1,22 @@
 import { useEffect, useState } from "react";
-
-
-
-import "./orders.css"
-
-
-
-
-
-
-
-
+import "./orders.css";
 
 const Orders = () => {
-
   const [orderData, setOrderData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        setLoading(true)
-        const response = await fetch("http://localhost:3000/order/:id",{
-        credentials:"include",
-        headers: { "Content-Type": "application/json" },
+        setLoading(true);
+        const response = await fetch("http://localhost:3000/order/getall", {
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
         });
-        const data= await response.json()
-        console.log(data.data)
-        setOrderData(data.data);
-     
-
-       
+        const data = await response.json();
+        console.log(data);
+        setOrderData(data.message);
       } catch (error) {
         setError(error);
         console.error("Error fetching orders:", error);
@@ -44,20 +28,23 @@ const Orders = () => {
     fetchOrders();
   }, []);
 
-  const handleDeleteItem = async (id)=> {
-    try{
-    const response= await fetch(`http://localhost:3000/order/${id}`,{
-      method:"DELETE",
-      headers:{ "Content-Type": "application/json"},
-      credentials:"include",
-    }) 
-    console.log(response)
-    
-    }catch(e){
-console.log(e.message)
+  const handleDeleteItem = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/order/:id`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ id }),
+      });
+
+      if (response.ok) {
+        setOrderData((prevData) => prevData.filter((order) => order.id !== id));
+      } else {
+        console.error("Failed to delete order:", response.statusText);
+      }
+    } catch (e) {
+      console.log(e.message);
     }
-    // removeItem(item.id);
-    // setOrderData((prevData) => prevData.filter((order) => order.id !== item.id));
   };
 
   return (
@@ -74,12 +61,14 @@ console.log(e.message)
       <div className="order">
         {orderData.map((order) => (
           <div className="ordercard" key={order.id}>
-           <h4> orders can only be cancelled within 5 min of order placement</h4>
+            <h4>Orders can only be cancelled within 5 min of order placement</h4>
             <img src={order.foodImg} alt={order.foodTitle} className="img" />
             <p>{order.foodTitle}</p>
-            <p>your bill:kes:{order.price}</p>
+            <p>Your bill: KES {order.price}</p>
             <p>Your order will be delivered within 30 minutes</p>
-            <button className="cancel" onClick={() => handleDeleteItem(order)}>Cancel</button>
+            <button className="cancel" onClick={() => handleDeleteItem(order.id)}>
+              Cancel
+            </button>
           </div>
         ))}
       </div>
@@ -87,6 +76,7 @@ console.log(e.message)
   );
 };
 
-export default Orders
+export default Orders;
+
 
 

@@ -67,13 +67,13 @@ export const updates = async (req, res) => {
 };
 
 export const deletes = async (req, res) => {
-  const id = req.params.id;
+  const {id} = req.body;
   try {
       await prisma.menu.delete({
       where: { id: id },
     });
     res.status(200).json({  message: "delete successful" });
   } catch (err) {
-    res.status(500).json({ message: "could'nt delete server error" });
+    res.status(500).json({ message: err.message});
   }
 };
