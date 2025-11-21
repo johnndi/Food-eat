@@ -6,10 +6,11 @@ import {
   deletes,
   posts,
 } from "../controllers/menu.controllers.js";
+import verifyToken from "../middlewares/token.middleware.js";
 const router = Router();
 
 router
-  .post("/", posts)
+  .post("/",verifyToken, posts)
   .get("/", getall)
   .get("/:id", getone)
   .patch("/:id", updates)

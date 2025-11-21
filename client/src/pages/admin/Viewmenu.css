@@ -17,16 +17,33 @@
     list-style: none;
     height: 100%;
 }
+.adminMenu h2{
+    text-align: center;
+    text-decoration: underline;
+    padding: 2rem;
+    margin: 1rem;
+}
 
 .placed{
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
-    width: 60%;
+    width: 100%;
 }
 .menus{
     display: flex;
     justify-content: space-evenly;
+}
+.menucard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+    width: 300px;
+    height: 250px;
 }

@@ -126,9 +126,9 @@ const Home = () => {
           {special.map((item) => (
             <div className="specialcard" key={item.id}>
               <img src={item.foodImg} alt="food" className="img" />
-              <p>{item.foodTitle}</p>
+              <h3>{item.foodTitle}</h3>
               <p>{item.foodDescription}</p>
-              <p>kes:{item.price}</p>
+              <h3>kes:{item.price}</h3>
               <button className="order" onClick={() => handleOrderClick(item)}>
                 Order
               </button>
@@ -145,10 +145,10 @@ const Home = () => {
         <div className="themenu">
           {menu.map((item) => (
             <div className="menucard" key={item.id}>
-              <img src={item.foodImg} alt="food" className="img" />
-              <p>{item.foodTitle}</p>
+              <img  src={item.foodImg} alt="food" className="img" />
+              <h3>{item.foodTitle}</h3>
               <p>{item.foodDescription}</p>
-              <p>kes:{item.price}</p>
+              <h3>kes:{item.price}</h3>
               <button className="order" onClick={() => handleOrderClick(item)}>
                 Order
               </button>
@@ -158,14 +158,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* {showLoginAlert && (
-        <div className="alert">
-          <div className="alert-content">
-            <p>You must be logged in to order.</p>
-            <button onClick={() => setShowLoginAlert(false)}>Close</button>
-          </div>
-        </div>
-      )} */}
+   
 
       {selectedItem && (
         <div className="modal">

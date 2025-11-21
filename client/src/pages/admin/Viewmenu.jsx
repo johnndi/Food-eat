@@ -80,11 +80,14 @@ const Viewmenu = () => {
 
   return (
     <div className="porderr">
-      <div className="dash"><Dashboard /></div>
+      <div  className="dash"><Dashboard /></div>
       <div className="placed">
-        {menu.map((menu) => (
+        <h2 className="adminMenu"> menu</h2>
+        <div className="menucards">
+          
+ {menu.map((menu) => (
           <div className="menucard" key={menu.id}>
-            <p><img src={menu.foodImg} alt={menu.foodTitle} /></p>
+            <p><img src={menu.foodImg} alt={menu.foodTitle} className="img" /></p>
             <h3>{menu.foodTitle}</h3>
             <p>{menu.foodDescription}</p>
             <p>:kes{menu.price}</p>
@@ -94,6 +97,8 @@ const Viewmenu = () => {
             </div>
           </div>
         ))}
+        </div>
+       
 
         {editingItem && (
           <form onSubmit={formik.handleSubmit} className="edit-form">

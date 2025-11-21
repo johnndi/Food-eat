@@ -4,10 +4,11 @@ import {
   loginUser,
   getall,
 } from "../controllers/users.conrollers.js";
+
 const router = Router();
 
 router.post("/", createUser).get("/", getall);
 
-router.post("/login", loginUser);
+router.post("/login",loginUser);
 
 export default router;

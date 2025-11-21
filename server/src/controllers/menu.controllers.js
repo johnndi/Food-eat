@@ -22,7 +22,7 @@ export const getone = async (req, res) => {
   }
 };
 export const posts = async (req, res) => {
-  user=req.user;
+  const user=req.user;
   
   try {
     const { foodImg, foodTitle, foodDescription, special, price } = req.body;

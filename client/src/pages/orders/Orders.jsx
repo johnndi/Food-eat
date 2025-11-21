@@ -55,7 +55,7 @@ const Orders = () => {
         ) : error ? (
           <h3>There was an error fetching data</h3>
         ) : (
-          <h2>Your Orders</h2>
+          <h2 className="pageTitle">Your Orders</h2>
         )}
       </div>
       <div className="order">

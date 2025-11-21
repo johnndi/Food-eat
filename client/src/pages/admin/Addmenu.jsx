@@ -56,7 +56,7 @@ function ImageUpload({ setFoodImg }) {
 
 const validationSchema = Yup.object({
   foodTitle: Yup.string().required('Food title is required'),
-  foodDescription: Yup.string().required('Food description is required'),
+  foodDescription: Yup.string().required('Food description is required').length(30, 'Description must be 30 characters or less'),
   special: Yup.boolean(),
   price: Yup.number().required('Price is required').positive('Price must be positive'),
 });
@@ -76,11 +76,12 @@ const Addmenu = () => {
     onSubmit: async (values) => {
       setLoading(true);
       try {
-        await fetch('http://localhost:3000/menu/', {
+        await fetch('http://localhost:3000/menu', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
           body: JSON.stringify({ ...values, foodImg }),
         });
         toast('Food item added successfully');
@@ -92,13 +93,14 @@ const Addmenu = () => {
       }
     },
   });
+ 
 
   return (
    <div className='addorder'>
     <div className='dash'><Dashboard/></div>
     <div className="addmenu">
       <form onSubmit={formik.handleSubmit}>
-        <div>
+        <div className='imageHolder'>
           <ImageUpload setFoodImg={setFoodImg} />
         </div>
         <div>

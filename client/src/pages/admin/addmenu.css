@@ -1,8 +1,6 @@
 .addorder{
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 100vh;
+  
 }
 .dash{
     display: flex;
@@ -21,15 +19,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-width: 60%;
+width: 100%;
 }
 .description{
     display: flex;
     flex-direction: column;
 }
 textarea{
-    background-color: white;
+    
     height: 7rem;
-    color:black;
+    color:white;
     font-family: 'Times New Roman', Times, serif;
 }

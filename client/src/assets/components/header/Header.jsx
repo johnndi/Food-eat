@@ -60,7 +60,7 @@ const Header = () => {
       });
       const data = await response.json();
       console.log(data);
-      setUser(data);
+      setUser(data.data);
      
 
       if (data.data.role === "admin") {
@@ -117,7 +117,7 @@ const Header = () => {
         <div className="operation">
           {user ? (
             <>
-              <span>Welcome, {user.data.fullName}</span> 
+              <span>Welcome, {user?.data?.fullName}</span> 
                <button className="login" onClick={handleLogoutClick}>Log out</button>
             </>
           ) : (

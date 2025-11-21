@@ -1,10 +1,12 @@
 .dashboard{
     list-style: none;
-    height: 100vh;
+    height: 100%;
   
 }
 .navs{
     display: flex;
+    align-items: center;
+    text-align: center;
   flex-direction: column;
   justify-content: space-around;
 
@@ -13,6 +15,7 @@
     padding: 1.5rem;
 }
 .navs a{
+    text-transform: capitalize;
     text-decoration: none;
     color: white;
     list-style: none;
@@ -23,4 +26,19 @@
     flex-direction: column;
     justify-content:center;
     gap: 5rem;
+}
+h2{
+    text-transform: capitalize;
+    text-align: center;
+    text-decoration: underline;
+    padding: 2rem;
+    margin: 1rem;
+}
+p{
+    text-transform: capitalize;
+    text-align: center;
+}
+.navs a:hover{
+    color: orange;
+    font-weight: bold;
 }

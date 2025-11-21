@@ -1,14 +1,14 @@
-import Home from './pages/home/Home'
+import Home from './pages/Home/Home.jsx'
 import {BrowserRouter,Routes,Route} from "react-router-dom"
 import Header from './assets/components/header/Header.jsx'
-import Orders from './pages/orders/Orders.jsx'
-import Viewmenu from './pages/admin/Viewmenu.jsx'
-import Admin from './pages/admin/Admin.jsx'
-import Porders from './pages/admin/Porders.jsx'
-import Addmenu from './pages/admin/Addmenu.jsx'
-import Addadmin from './pages/admin/Addadmin.jsx'
+import Orders from './pages/Orders/Orders.jsx'
+import Viewmenu from './pages/Admin/Viewmenu.jsx'
+import Admin from './pages/Admin/admin.jsx'
+import Porders from './pages/Admin/Porders.jsx'
+import Addmenu from './pages/Admin/Addmenu.jsx'
+import Addadmin from './pages/Admin/Addadmin.jsx'
 import Protected from './Protected.jsx'
-import Footer from './assets/components/Footer.jsx'
+import Footer from './assets/components/footer.jsx'
 import './App.css'
 
 function App() {
